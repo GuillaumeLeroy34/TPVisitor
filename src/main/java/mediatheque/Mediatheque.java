@@ -5,29 +5,37 @@ import java.util.List;
 
 
 public class Mediatheque {
+
+
+
+
+
 	private final List<Item> items = new LinkedList<>();
+
+	private final VisitorBook visitorBook= new VisitorBook();
+	private final VisitorCD  visitorCD= new VisitorCD();
+	private final VisitorGlobal visitorGlobal= new VisitorGlobal();
+	
 
 	public void addItem(Item i) {
 		items.add(i);
 	}
 	
+	
 	public void printCatalog() {
 		for (Item i : items)
-			i.print();
+			System.out.print(i.accept(visitorGlobal));
 	}
 	
 	public void printOnlyBooks() {
-		throw new UnsupportedOperationException("Not supported yet."); 
-		/*
-		//avec instanceof
-		for (Item i : items)
-			if (i instanceof Book)
-				System.out.println(i);
-		*/
+		for(Item i : items)
+		System.out.print(i.accept(visitorBook));
+				
 	}
 
 	public void printOnlyCDs() {
-		throw new UnsupportedOperationException("Not supported yet."); 
+		for(Item i : items)
+		System.out.print(i.accept(visitorCD));
 	}
 
 }

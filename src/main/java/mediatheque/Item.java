@@ -20,5 +20,5 @@ public abstract class Item {
 	public String toString() {
 		return "title=" + title ;
 	}
-	
+	public abstract String accept(Visitor v);
 }
